@@ -1,21 +1,22 @@
 class Solution {
 public:
     int helper(vector<int>& gas, vector<int>& cost,int&n,int i){
-        if(cost[i]>gas[i]){
-            return (i+1);
+        int idx=i;
+        if(cost[idx]>gas[idx]){
+            return (idx+1);
         }
 
         int count=0,fuel=0;
         while(count<n){
-            fuel+=gas[i];
-            if(cost[i]>fuel)
-                return i;
+            fuel+=gas[idx];
+            if(cost[idx]>fuel)
+                return idx;
             
-            fuel-=cost[i];
+            fuel-=cost[idx];
             count+=1;
-            i=(i+1)%n;
+            idx=(idx+1)%n;
         }
-        return i;
+        return idx;
     }
 
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
